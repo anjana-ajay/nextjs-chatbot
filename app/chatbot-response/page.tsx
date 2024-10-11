@@ -1,16 +1,20 @@
 import chatBotImg from "@/app/icon.svg";
+import { getServerSideProps } from "next/dist/build/templates/pages";
 import Image from "next/image";
 import { FaUserCircle } from "react-icons/fa";
 import { RiRobot2Line } from "react-icons/ri";
+import { Message } from "../page";
 
-export default function ChatBotResponsePage({ messages }: any) {
+type Props = Awaited<ReturnType<typeof getServerSideProps>>["props"];
+
+export default function ChatBotResponsePage({ messages }: Props) {
   const renderMessage = (text: string) => {
     const parts = text.split(/(\*\*.*?\*\*)/); // Split the message on **bold** parts
     return parts.map((part, index) => {
       if (part.startsWith("**") && part.endsWith("**")) {
         // Remove the surrounding ** and render as bold
         return (
-          <strong key={index}>{part.substring(2, part.length - 2)}</strong>
+          <strong key={index}>{part.substring(2, part?.length - 2)}</strong>
         );
       }
       return part; // Normal text part
@@ -20,9 +24,9 @@ export default function ChatBotResponsePage({ messages }: any) {
   return (
     <div className="min-h-96 bg-violet-100 p-2 m-2">
       <div className="flex flex-col items-center w-full">
-        {messages.length > 0 ? (
+        {messages?.length > 0 ? (
           <div className="w-full flex flex-col space-y-2">
-            {messages.map((msg: any, index: number) => (
+            {messages.map((msg: Message, index: number) => (
               <div
                 key={index}
                 className={`flex ${

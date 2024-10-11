@@ -2,10 +2,13 @@
 import { useEffect, useState } from "react";
 import { IoMdSend } from "react-icons/io";
 import { socket } from "../socket";
+import { getServerSideProps } from "next/dist/build/templates/pages";
+import { Message } from "../page";
 
-export default function InputFormPage({ sendDataToParent }: any) {
+type Props = Awaited<ReturnType<typeof getServerSideProps>>["props"];
+export default function InputFormPage({ sendDataToParent }: Props) {
   const [inputVal, setInputVal] = useState("");
-  const [messages, setMessages] = useState<any[]>([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [isConnected, setIsConnected] = useState(false);
 
   useEffect(() => {
@@ -49,6 +52,7 @@ export default function InputFormPage({ sendDataToParent }: any) {
       sendDataToParent(updatedMessages);
       return updatedMessages;
     });
+    console.log("messages=", messages);
 
     if (socket && isConnected) {
       console.log("Socket is connected, sending message...");

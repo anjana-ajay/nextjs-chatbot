@@ -3,7 +3,7 @@ import { useState } from "react";
 import ChatBotResponsePage from "./chatbot-response/page";
 import InputFormPage from "./input-form/page";
 
-interface Message {
+export interface Message {
   sender: string;
   text: string;
   isError?: boolean;
@@ -12,7 +12,7 @@ interface Message {
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>([]);
 
-  function receiveDataFromInputPage(data: any) {
+  function receiveDataFromInputPage(data: Message[]) {
     setMessages(data);
   }
 

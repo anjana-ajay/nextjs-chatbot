@@ -1,9 +1,14 @@
-FROM node:20.11.1
-ENV NODE_ENV development   
+# Build stage
+FROM node:20.11.1-alpine as builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
-COPY . . 
+COPY . .
 RUN npm run build
+
+# Production stage
+FROM node:20.11.1-alpine
+WORKDIR /app
+COPY --from=builder /app ./
 EXPOSE 3000
-CMD ['npm', 'run','dev']
+CMD ["npm", "start"]
