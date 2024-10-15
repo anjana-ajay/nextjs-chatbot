@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ChatBotResponsePage from "./chatbot-response/page";
 import InputFormPage from "./input-form/page";
 
@@ -12,6 +12,12 @@ export interface Message {
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>([]);
 
+  useEffect(() => {
+    const storedMessages = sessionStorage.getItem("messages");
+    if (storedMessages) {
+      setMessages(JSON.parse(storedMessages));
+    }
+  }, []);
   function receiveDataFromInputPage(data: Message[]) {
     setMessages(data);
   }

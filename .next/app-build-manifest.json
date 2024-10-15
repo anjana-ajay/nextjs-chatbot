@@ -1,0 +1,52 @@
+{
+  "pages": {
+    "/_not-found/page": [
+      "static/chunks/webpack-16ea2f0c5b7207a8.js",
+      "static/chunks/fd9d1056-49ca28257eb7a92c.js",
+      "static/chunks/117-b7a8b0dac4c092a9.js",
+      "static/chunks/main-app-d4d19db1d17f1769.js",
+      "static/chunks/app/_not-found/page-32c70da5a397ed57.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack-16ea2f0c5b7207a8.js",
+      "static/chunks/fd9d1056-49ca28257eb7a92c.js",
+      "static/chunks/117-b7a8b0dac4c092a9.js",
+      "static/chunks/main-app-d4d19db1d17f1769.js",
+      "static/css/29fa20c21fc3c876.css",
+      "static/chunks/878-10eefada1dfe727c.js",
+      "static/chunks/app/layout-332d3a801961fe83.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-16ea2f0c5b7207a8.js",
+      "static/chunks/fd9d1056-49ca28257eb7a92c.js",
+      "static/chunks/117-b7a8b0dac4c092a9.js",
+      "static/chunks/main-app-d4d19db1d17f1769.js",
+      "static/chunks/8e1d74a4-a1f3a836b12d80d5.js",
+      "static/chunks/94730671-aafe19d33160ed70.js",
+      "static/chunks/5e22fd23-0f4ab30ece36e292.js",
+      "static/chunks/878-10eefada1dfe727c.js",
+      "static/chunks/96-f2031016fb2a4fc2.js",
+      "static/chunks/app/page-1fd487bc4330edcc.js"
+    ],
+    "/input-form/page": [
+      "static/chunks/webpack-16ea2f0c5b7207a8.js",
+      "static/chunks/fd9d1056-49ca28257eb7a92c.js",
+      "static/chunks/117-b7a8b0dac4c092a9.js",
+      "static/chunks/main-app-d4d19db1d17f1769.js",
+      "static/chunks/8e1d74a4-a1f3a836b12d80d5.js",
+      "static/chunks/5e22fd23-0f4ab30ece36e292.js",
+      "static/chunks/96-f2031016fb2a4fc2.js",
+      "static/chunks/app/input-form/page-9df16c6f56726fea.js"
+    ],
+    "/chatbot-response/page": [
+      "static/chunks/webpack-16ea2f0c5b7207a8.js",
+      "static/chunks/fd9d1056-49ca28257eb7a92c.js",
+      "static/chunks/117-b7a8b0dac4c092a9.js",
+      "static/chunks/main-app-d4d19db1d17f1769.js",
+      "static/chunks/8e1d74a4-a1f3a836b12d80d5.js",
+      "static/chunks/94730671-aafe19d33160ed70.js",
+      "static/chunks/878-10eefada1dfe727c.js",
+      "static/chunks/app/chatbot-response/page-7437bf96d8c77d78.js"
+    ]
+  }
+}

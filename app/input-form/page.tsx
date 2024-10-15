@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { IoMdSend } from "react-icons/io";
+import { FaSpinner } from "react-icons/fa";
 import { socket } from "../socket";
 import { getServerSideProps } from "next/dist/build/templates/pages";
 import { Message } from "../page";
@@ -10,6 +11,14 @@ export default function InputFormPage({ sendDataToParent }: Props) {
   const [inputVal, setInputVal] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [isConnected, setIsConnected] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const storedMessages = sessionStorage.getItem("messages");
+    if (storedMessages) {
+      setMessages(JSON.parse(storedMessages));
+    }
+  }, []);
 
   useEffect(() => {
     if (socket.connected) {
@@ -28,10 +37,12 @@ export default function InputFormPage({ sendDataToParent }: Props) {
     socket.on("disconnect", onDisconnect);
 
     socket.on("response", (reply) => {
+      setIsLoading(false);
       console.log("Received response:", reply);
       const newBotMessage = { sender: "bot", text: reply };
       setMessages((prevMessages) => {
         const updatedMessages = [...prevMessages, newBotMessage];
+        sessionStorage.setItem("messages", JSON.stringify(updatedMessages));
         sendDataToParent(updatedMessages);
         return updatedMessages;
       });
@@ -48,7 +59,9 @@ export default function InputFormPage({ sendDataToParent }: Props) {
     if (!inputVal) return;
     const newUserMessage = { sender: "user", text: inputVal };
     setMessages((prevMessages) => {
+      setIsLoading(true);
       const updatedMessages = [...prevMessages, newUserMessage];
+      sessionStorage.setItem("messages", JSON.stringify(updatedMessages));
       sendDataToParent(updatedMessages);
       return updatedMessages;
     });
@@ -79,7 +92,23 @@ export default function InputFormPage({ sendDataToParent }: Props) {
             onClick={() => sendMessage()}
           />
         )}
+        {isLoading && (
+          <FaSpinner
+            className="text-gray-600 size-8 mx-2"
+            style={{ animation: "spin 1s linear infinite" }}
+          />
+        )}
       </div>
+      <style jsx>{`
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+      `}</style>
       <div></div>
     </>
   );
